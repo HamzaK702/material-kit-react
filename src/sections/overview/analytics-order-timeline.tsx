@@ -1,6 +1,6 @@
 import type { CardProps } from '@mui/material/Card';
 import type { TimelineItemProps } from '@mui/lab/TimelineItem';
-
+import Box   from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Timeline from '@mui/lab/Timeline';
 import TimelineDot from '@mui/lab/TimelineDot';
@@ -11,7 +11,6 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 
-import { fDateTime } from 'src/utils/format-time';
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +21,6 @@ type Props = CardProps & {
     id: string;
     type: string;
     title: string;
-    time: string | number | null;
   }[];
 };
 
@@ -57,27 +55,31 @@ type ItemProps = TimelineItemProps & {
 };
 
 function Item({ item, lastItem, ...other }: ItemProps) {
+  const color = 
+    item.type === 'order1' ? '#ed2f8c' : // Dark Pink - High Risk
+    item.type === 'order2' ? '#FF69B4' : // Medium Pink - Moderate Risk
+    item.type === 'order3' ? '#FFB3DE' : // Light Pink - Low Risk
+    '#FFDDDD'; // Default to Light Pink if no match
+
+  const count = 10; // Hardcoded count for now
+
   return (
     <TimelineItem {...other}>
       <TimelineSeparator>
         <TimelineDot
-          color={
-            (item.type === 'order1' && 'primary') ||
-            (item.type === 'order2' && 'success') ||
-            (item.type === 'order3' && 'info') ||
-            (item.type === 'order4' && 'warning') ||
-            'error'
-          }
+          sx={{
+            backgroundColor: color,
+          }}
         />
         {lastItem ? null : <TimelineConnector />}
       </TimelineSeparator>
 
       <TimelineContent>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography variant="subtitle2">{item.title}</Typography>
-
-        <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-          {fDateTime(item.time)}
-        </Typography>
+          <Typography variant="subtitle2">{count}</Typography>
+         
+        </Box>
       </TimelineContent>
     </TimelineItem>
   );

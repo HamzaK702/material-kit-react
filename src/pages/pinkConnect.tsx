@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 
 import { CONFIG } from 'src/config-global';
 
-import { UserView } from 'src/sections/user/view';
+import { PinkConnectView } from 'src/sections/pinkConnect/view';
 
 // ----------------------------------------------------------------------
 
@@ -10,10 +10,10 @@ export default function Page() {
   return (
     <>
       <Helmet>
-        <title> {`Admins - ${CONFIG.appName}`}</title>
+        <title> {`PinkConnect - ${CONFIG.appName}`}</title>
       </Helmet>
 
-      <UserView />
+      <PinkConnectView />
     </>
   );
 }

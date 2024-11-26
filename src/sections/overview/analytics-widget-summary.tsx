@@ -1,5 +1,4 @@
 import type { CardProps } from '@mui/material/Card';
-import type { ColorType } from 'src/theme/core/palette';
 import type { ChartOptions } from 'src/components/chart';
 
 import Box from '@mui/material/Box';
@@ -8,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { fNumber, fPercent, fShortenNumber } from 'src/utils/format-number';
 
-import { varAlpha, bgGradient } from 'src/theme/styles';
+import { bgGradient } from 'src/theme/styles';
 
 import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
@@ -20,13 +19,13 @@ type Props = CardProps & {
   title: string;
   total: number;
   percent: number;
-  color?: ColorType;
-  icon: React.ReactNode;
+  icon: string;
   chart: {
     series: number[];
     categories: string[];
     options?: ChartOptions;
   };
+  gradientColors?: [string, string]; // Array for two gradient colors
 };
 
 export function AnalyticsWidgetSummary({
@@ -35,17 +34,15 @@ export function AnalyticsWidgetSummary({
   total,
   chart,
   percent,
-  color = 'primary',
+  gradientColors = ['#FFD1E8', '#FFA6C9'], // Lighter pink gradient by default
   sx,
   ...other
 }: Props) {
   const theme = useTheme();
 
-  const chartColors = [theme.palette[color].dark];
-
   const chartOptions = useChart({
     chart: { sparkline: { enabled: true } },
-    colors: chartColors,
+    colors: [gradientColors[0]], // Use the first color in the gradient for chart line
     xaxis: { categories: chart.categories },
     grid: {
       padding: {
@@ -84,18 +81,24 @@ export function AnalyticsWidgetSummary({
     <Card
       sx={{
         ...bgGradient({
-          color: `135deg, ${varAlpha(theme.vars.palette[color].lighterChannel, 0.48)}, ${varAlpha(theme.vars.palette[color].lightChannel, 0.48)}`,
+          color: `135deg, ${gradientColors[0]}, ${gradientColors[1]}`, // Apply the lighter pink gradient
         }),
         p: 3,
         boxShadow: 'none',
         position: 'relative',
-        color: `${color}.darker`,
+        color: theme.palette.text.primary,
         backgroundColor: 'common.white',
         ...sx,
       }}
       {...other}
     >
-      <Box sx={{ width: 48, height: 48, mb: 3 }}>{icon}</Box>
+      <Box sx={{ width: 48, height: 48, mb: 3, backgroundColor: 'common.white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Iconify width={24} icon={icon} color="#FF69B4" />
+      {/* <Iconify width={24} icon="ooui:lab-flask" color="#FF69B4" /> */}
+      {/* <Iconify width={24} icon="game-icons:self-love" color="#FF69B4" /> */}
+      {/* <Iconify width={24} icon="fa-solid:user" color="#FF69B4" /> */}
+        {/* <Iconify width={24} icon="fluent:person-warning-20-filled" color="#FF69B4" /> */}
+      </Box>    
 
       {renderTrending}
 
@@ -131,7 +134,7 @@ export function AnalyticsWidgetSummary({
           height: 240,
           opacity: 0.24,
           position: 'absolute',
-          color: `${color}.main`,
+          color: gradientColors[0], // Use the first color for the background shape
         }}
       />
     </Card>

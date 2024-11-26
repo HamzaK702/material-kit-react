@@ -45,7 +45,7 @@ export function AnalyticsWebsiteVisits({ title, subheader, chart, ...other }: Pr
     },
     tooltip: {
       y: {
-        formatter: (value: number) => `${value} visits`,
+        formatter: (value: number) => `${value}`,
       },
     },
     ...chart.options,
@@ -59,7 +59,7 @@ export function AnalyticsWebsiteVisits({ title, subheader, chart, ...other }: Pr
         type="bar"
         series={chart.series}
         options={chartOptions}
-        height={364}
+        height={400}
         sx={{ py: 2.5, pl: 1, pr: 2.5 }}
       />
     </Card>

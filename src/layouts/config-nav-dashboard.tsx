@@ -14,7 +14,7 @@ export const navData = [
     icon: icon('ic-analytics'),
   },
   {
-    title: 'User',
+    title: 'Admins',
     path: '/user',
     icon: icon('ic-user'),
   },
@@ -34,9 +34,39 @@ export const navData = [
     icon: icon('ic-blog'),
   },
   {
+    title: 'Pink Connect',
+    path: '/pink-connect',
+    icon: icon('ic-pinkConnect'),
+  },
+  {
+    title: 'Red Flags',
+    path: '/red-flags',
+    icon: icon('ic-pinkConnect'),
+  },
+  {
+    title: 'Mammomanual',
+    path: '/mammomanual',
+    icon: icon('ic-pinkConnect'),
+  },
+  {
+    title: 'Pink Voice',
+    path: '/pink-voice',
+    icon: icon('ic-pinkConnect'),
+  },
+  {
+    title: 'Video',
+    path: '/video',
+    icon: icon('ic-pinkConnect'),
+  },
+  {
     title: 'Sign in',
     path: '/sign-in',
     icon: icon('ic-lock'),
+  },
+  {
+    title: 'Not found',
+    path: '/404',
+    icon: icon('ic-disabled'),
   },
   {
     title: 'Not found',

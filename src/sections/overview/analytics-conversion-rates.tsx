@@ -69,7 +69,7 @@ export function AnalyticsConversionRates({ title, subheader, chart, ...other }: 
         type="bar"
         series={chart.series}
         options={chartOptions}
-        height={360}
+        height="67vh"
         sx={{ py: 2.5, pl: 1, pr: 2.5 }}
       />
     </Card>

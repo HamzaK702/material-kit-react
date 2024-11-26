@@ -42,10 +42,12 @@ export function AnalyticsTrafficBySite({ title, subheader, list, sx, ...other }:
               <Iconify icon="eva:facebook-fill" color="#1877F2" width={32} />
             )}
             {site.value === 'google' && <Iconify icon="logos:google-icon" width={32} />}
-            {site.value === 'linkedin' && (
-              <Iconify icon="eva:linkedin-fill" color="#0A66C2" width={32} />
+            {site.value === 'apple' && (
+              <Iconify icon="logos:apple" color="#000000" width={32} />
             )}
-            {site.value === 'twitter' && <Iconify icon="ri:twitter-x-fill" width={32} />}
+            {site.value === 'in-app' && (
+              <img src="/assets/icons/pinkDetect/logo.png" alt="Direct Sign Up" width={32} />
+            )}
 
             <Typography variant="h6" sx={{ mt: 1 }}>
               {fShortenNumber(site.total)}
